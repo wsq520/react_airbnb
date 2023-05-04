@@ -1,13 +1,13 @@
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 
-const initialState = {
-  counter: 100
-}
+import homeReducer from './modules/home'
+import entireReducer from './modules/entire'
 
-function reducer() {
-  return initialState
-}
+const store = configureStore({
+  reducer: {
+    home: homeReducer,
+    entire: entireReducer
+  }
+})
 
-const store = createStore(reducer)
-
-module.export = store
+export default store
