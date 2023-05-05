@@ -7,10 +7,12 @@ import { HomeWrapper } from './style'
 import HomeBanner from './cpns/home-banner'
 import SectionHeader from '@/components/section-header'
 import SectionRooms from '@/components/section-rooms'
+import HomeSectionV1 from './cpns/home-section-v1'
 
 const Home = memo(() => {
-  const { goodPriceInfo } = useSelector((state) => ({
-    goodPriceInfo: state.home.goodPriceInfo
+  const { goodPriceInfo, highScoreInfo } = useSelector((state) => ({
+    goodPriceInfo: state.home.goodPriceInfo,
+    highScoreInfo: state.home.highScoreInfo
   }), shallowEqual)
 
   // 派发事件
@@ -23,10 +25,12 @@ const Home = memo(() => {
     <HomeWrapper>
       <HomeBanner />
       <div className='content'>
-        <div className='good-price'>
-          <SectionHeader title={goodPriceInfo.title}></SectionHeader>
-          <SectionRooms roomList={goodPriceInfo.list} />
-        </div>
+        <HomeSectionV1 infoData={goodPriceInfo} />
+        <HomeSectionV1 infoData={highScoreInfo} />
+        {/* <div className='high-score'>
+          <SectionHeader title={highScoreInfo?.title} />
+          <SectionRooms roomList={highScoreInfo?.list} />
+        </div> */}
       </div>
     </HomeWrapper>
   )
