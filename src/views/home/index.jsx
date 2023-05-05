@@ -10,10 +10,11 @@ import HomeSectionV2 from './cpns/home-section-v2'
 import { isEmptyObject } from '@/utils'
 
 const Home = memo(() => {
-  const { goodPriceInfo, highScoreInfo, discountInfo } = useSelector((state) => ({
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } = useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
     highScoreInfo: state.home.highScoreInfo,
-    discountInfo: state.home.discountInfo
+    discountInfo: state.home.discountInfo,
+    recommendInfo: state.home.recommendInfo
   }), shallowEqual)
 
   // 派发事件
@@ -28,6 +29,9 @@ const Home = memo(() => {
       <div className='content'>
         {
           isEmptyObject(discountInfo) && <HomeSectionV2 infoData={discountInfo} />
+        }
+        {
+          isEmptyObject(recommendInfo) && <HomeSectionV2 infoData={recommendInfo} />
         }
         {
           isEmptyObject(goodPriceInfo) && <HomeSectionV1 infoData={goodPriceInfo} />
